@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+use App\Http\Controllers\UserController;
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -26,3 +28,7 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::resource('user-manager', UserController::class)->names([
+    'index' => 'user-manager.index'
+]);
